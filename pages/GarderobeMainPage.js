@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, Alert } from 'react-native';
+import React, { useState, useEffect } from "react";
+import { View, Text, Alert } from "react-native";
 
-import Button from '../components/Button';
-import { styles } from '../components/styles';
-import { loadSavedData } from '../components/FileHandler';
+import Button from "../components/Button";
+import { styles } from "../components/styles";
+import { loadSavedData } from "../components/FileHandler";
 
 export default function GMainPage({ navigation, route }) {
   const { kode } = route.params;
@@ -15,7 +15,7 @@ export default function GMainPage({ navigation, route }) {
         const data = await loadSavedData();
         setSavedData(data || []);
       } catch (error) {
-        console.error('Error loading saved data:', error);
+        console.error("Error loading saved data:", error);
       }
     };
 
@@ -23,7 +23,7 @@ export default function GMainPage({ navigation, route }) {
   }, []);
 
   // Find the element in savedData with matching Kode value
-  const matchingElement = savedData.find(item => item.Kode === kode);
+  const matchingElement = savedData.find((item) => item.Kode === kode);
 
   return (
     <View style={styles.mainContainer}>
@@ -33,7 +33,11 @@ export default function GMainPage({ navigation, route }) {
       ) : (
         <Text>No match found for kode: {kode}</Text>
       )}
-      <Button label="Tilbage til forside" onPress={() => navigation.navigate('MainPage')} ContainerStyle={styles.buttonContainer}/>
+      <Button
+        label="Tilbage til forside"
+        OnPress={() => navigation.navigate("MainPage")}
+        ContainerStyle={styles.buttonContainer}
+      />
     </View>
   );
 }
