@@ -1,0 +1,17 @@
+[{
+    "Navn": "SkoleFest",
+    "Kode": "15h3ghf2",
+    "pladser":{
+        "001": "Ingen jakke",
+        "002": "Ingen jakke"
+    }
+},
+{
+    "Navn": "En anden fest",
+    "Kode": "12345678",
+    "pladser":{
+        "001": "Ingen jakke",
+        "002": "Ingen jakke"
+    }
+}
+]

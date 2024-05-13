@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import { View, Text } from 'react-native';
-import { styles } from './styles';
-import Button from './Button';
+import { styles } from '../components/styles';
+import Button from '../components/Button';
+import { deleteSavedFile } from '../components/FileHandler';
 
 export default function MainPage({ navigation }) {
   return (
@@ -14,13 +15,12 @@ export default function MainPage({ navigation }) {
       </View>
       <View style={styles.buttonsContainer}>
         <View style={{justifyContent: "flex-start"}}>
-          <Button label="Login som personale" OnPress={() => navigation.navigate('PersonaleLogin')} />
+          <Button label="Login som personale" OnPress={() => navigation.navigate('PersonaleLogin')} ContainerStyle={styles.buttonContainer}/>
         <View style={{height: "60%"}}></View>
         </View>
         <View style={{justifyContent: "flex-end"}}>
-            <Button label="Placer din jakke" OnPress={() => navigation.navigate('PersonaleLogin')} />
+            <Button label="Fortsæt som gæst" OnPress={() => deleteSavedFile('saved.json')} ContainerStyle={styles.buttonContainer} />
         </View>
-
       </View>
     </View>
   );
