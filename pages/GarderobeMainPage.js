@@ -12,7 +12,8 @@ export default function GMainPage({ navigation, route }) {
   useEffect(() => {
     const fetchSavedData = async () => {
       try {
-        const data = await loadSavedData();
+        const data = await loadSavedData("saved.json");
+        console.log("Data:", data);
         setSavedData(data || []);
       } catch (error) {
         console.error("Error loading saved data:", error);
@@ -22,13 +23,25 @@ export default function GMainPage({ navigation, route }) {
     fetchSavedData();
   }, []);
 
+  const findLedigPlads = (pladser) => {
+    for (const key in pladser) {
+      console.log(pladser[key].value);
+      if (pladser[key].value === "Ikke optaget") {
+        return pladser[key].key;
+      }
+    }
+    return "Ingen ledige pladser";
+  };
+
   // Find the element in savedData with matching Kode value
   const matchingElement = savedData.find((item) => item.Kode === kode);
-  const database = dbData.find((item) => item.Kode === kode);
-  const data = database
-    ? Object.entries(database.Pladser).map(([key, value]) => ({ key, value }))
+  const pladser = matchingElement
+    ? Object.entries(matchingElement.Pladser).map(([key, value]) => ({
+        key,
+        value,
+      }))
     : [];
-
+  const ledigPlads = findLedigPlads(pladser);
   return (
     <View style={styles.mainContainer}>
       <View style={styles.titleContainer}>
@@ -36,24 +49,17 @@ export default function GMainPage({ navigation, route }) {
         <Text style={styles.titleText}>Forside</Text>
       </View>
       {matchingElement ? (
-        <Text>Navn: {matchingElement.Navn}</Text>
+        <View>
+          <Text>Navn: {matchingElement.Navn}</Text>
+          <Text>Ledig plads: {ledigPlads}</Text>
+        </View>
       ) : (
         <Text>No match found for kode: {kode}</Text>
       )}
       <>
         <View style={{ maxHeight: "70%" }}>
-          {database ? (
-            <FlatList
-              data={data}
-              renderItem={({ item }) => (
-                <Text style={{ margin: 5 }}>
-                  {item.key}: {item.value}
-                </Text>
-              )}
-              keyExtractor={(item) => item.key}
-              numColumns={Math.floor(Dimensions.get("window").width / 100)} // Adjust the column width as needed
-              contentContainerStyle={{ flexDirection: "column" }}
-            />
+          {matchingElement ? (
+            <></>
           ) : (
             <Text>No match found for kode: {kode}</Text>
           )}
@@ -61,7 +67,12 @@ export default function GMainPage({ navigation, route }) {
         <View>
           <Button
             label="Scan QR kode"
-            OnPress={() => navigation.navigate("MainPage")}
+            OnPress={() =>
+              navigation.navigate("QRPladserJakke", {
+                kode: kode,
+                ledigPlads: ledigPlads,
+              })
+            }
             ContainerStyle={styles.buttonContainer}
           />
         </View>

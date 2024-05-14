@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text } from "react-native";
+import { View, Text, Alert } from "react-native";
 import { styles } from "../components/styles";
 import Button from "../components/Button";
 import { deleteSavedFile } from "../components/FileHandler";
@@ -25,9 +25,31 @@ export default function MainPage({ navigation }) {
         <View style={{ justifyContent: "flex-end" }}>
           <Button
             label="Fortsæt som gæst"
-            OnPress={() => navigation.navigate("KundeQRScan")}
+            OnPress={() => navigation.navigate("KundeMainPage")}
             ContainerStyle={styles.buttonContainer}
           />
+          <View style={{ flexDirection: "row", alignSelf: "center" }}>
+            <Button
+              label="Reset saved data"
+              OnPress={() => {
+                deleteSavedFile("saved.json");
+                Alert.alert("Data reset", "Saved data has been reset");
+              }}
+              ContainerStyle={{ ...styles.tempResetContainer, marginTop: 10 }}
+            />
+            <Button
+              label="Reset name data"
+              OnPress={() => {
+                deleteSavedFile("name.json");
+                Alert.alert("Data reset", "Name data has been reset");
+              }}
+              ContainerStyle={{
+                ...styles.tempResetContainer,
+                marginTop: 10,
+                marginLeft: 10,
+              }}
+            />
+          </View>
         </View>
       </View>
     </View>

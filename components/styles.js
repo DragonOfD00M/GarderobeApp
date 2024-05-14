@@ -8,6 +8,10 @@ export const styles = StyleSheet.create({
     backgroundColor: "#3094DD",
     alignItems: "center",
   },
+  cameraContainer: {
+    flex: 1,
+    justifyContent: "center",
+  },
   titleContainer: {
     alignItems: "center",
   },
@@ -34,5 +38,10 @@ export const styles = StyleSheet.create({
     width: 50,
     height: 25,
     backgroundColor: "00A",
+  },
+  tempResetContainer: {
+    width: 150,
+    height: 50,
+    backgroundColor: "#00A",
   },
 });
