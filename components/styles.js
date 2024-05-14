@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   titleContainer: {
-    alignSelf: "center",
+    alignItems: "center",
   },
   titleText: {
     fontSize: 50,
