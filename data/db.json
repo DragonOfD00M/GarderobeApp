@@ -1,0 +1,46 @@
+[
+  {
+    "Navn": "SkoleFest",
+    "Kode": "15h3ghf2",
+    "Pladser": {
+      "101": "Ikke optaget",
+      "102": "Ikke optaget",
+      "103": "Ikke optaget",
+      "104": "Ikke optaget",
+      "105": "Ikke optaget",
+      "106": "Ikke optaget",
+      "107": "Ikke optaget",
+      "108": "Ikke optaget",
+      "109": "Ikke optaget",
+      "110": "Ikke optaget",
+      "201": "Ikke optaget",
+      "202": "Ikke optaget",
+      "203": "Ikke optaget",
+      "204": "Ikke optaget",
+      "205": "Ikke optaget",
+      "206": "Ikke optaget",
+      "207": "Ikke optaget",
+      "208": "Ikke optaget",
+      "209": "Ikke optaget",
+      "210": "Ikke optaget",
+      "001": "Ikke optaget",
+      "002": "Ikke optaget",
+      "003": "Ikke optaget",
+      "004": "Ikke optaget",
+      "005": "Hans Hansen",
+      "006": "Ikke optaget",
+      "007": "Ikke optaget",
+      "008": "Ikke optaget",
+      "009": "Ikke optaget",
+      "010": "Ikke optaget"
+    }
+  },
+  {
+    "Navn": "En anden fest",
+    "Kode": "12345678",
+    "Pladser": {
+      "001": "Ingen jakke",
+      "002": "Ingen jakke"
+    }
+  }
+]
