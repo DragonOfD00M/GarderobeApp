@@ -26,12 +26,12 @@ export default function PersonaleLogin({ navigation }) {
     <View style={styles.mainContainer}>
       <>
         {savedData.length > 0 && (
-          <View style={{ marginTop: 20 }}>
-            <Text>Saved Data:</Text>
+          <View style={{ ...styles.titleContainer, marginTop: 20 }}>
+            <Text style={styles.standardText}>Saved Data:</Text>
             <Text />
             {savedData.map((item, index) => (
               <View style={{ flexDirection: "row" }} key={index}>
-                <Text>Name: {item.Navn}</Text>
+                <Text style={styles.standardText}>Name: {item.Navn}</Text>
                 <Button
                   label="Login"
                   OnPress={() =>

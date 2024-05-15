@@ -37,25 +37,6 @@ export default function KundeMainPage({ navigation }) {
       ) : (
         <View>
           <Text>No name available</Text>
-          <TextInput
-            placeholder="Indtast navn..."
-            value={tempName}
-            onChangeText={setTempName}
-          />
-          {console.log("TempName:", tempName)}
-          <Button
-            label="Gem navn"
-            OnPress={() => {
-              saveToFile("name.json", tempName);
-              Alert,
-                alert(
-                  "Fedt, du er nu logget ind!",
-                  `Du er nu logget ind som ${name}!`
-                );
-              navigation.navigate("MainPage");
-            }}
-            ContainerStyle={styles.quickLoginContainer}
-          />
         </View>
       )}
 

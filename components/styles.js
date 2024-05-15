@@ -20,11 +20,18 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#000",
   },
+  standardText: {
+    fontSize: 20,
+    color: "#000",
+  },
   buttonContainer: {
     width: 320,
     height: 68,
+    marginTop: 20,
     marginHorizontal: 20,
     backgroundColor: "#00A",
+    borderWidth: 3,
+    borderColor: "#000",
     padding: 3,
   },
   textShowContainer: {
@@ -37,11 +44,11 @@ export const styles = StyleSheet.create({
     marginBottom: 5,
     width: 50,
     height: 25,
-    backgroundColor: "00A",
+    backgroundColor: "#00A",
   },
   tempResetContainer: {
     width: 150,
     height: 50,
-    backgroundColor: "#00A",
+    backgroundColor: "#999",
   },
 });

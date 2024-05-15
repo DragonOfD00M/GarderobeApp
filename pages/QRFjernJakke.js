@@ -8,13 +8,14 @@ import { saveToFile, loadSavedData } from "../components/FileHandler";
 
 import dbData from "../data/db.json";
 
-export default function QRPladserJakke({ navigation, route }) {
-  const { kode, ledigPlads } = route.params;
+export default function QRFjernJakke({ navigation, route }) {
+  const { kode } = route.params;
   const [facing, setFacing] = useState("back");
   const [permission, requestPermission] = useCameraPermissions();
   const [scanned, setScanned] = useState(false);
   const [savedData, setSavedData] = useState([]);
   const [result, setResult] = useState("");
+  const [brugerPlads, setBrugerPlads] = useState(0);
 
   useEffect(() => {
     const fetchSavedData = async () => {
@@ -38,19 +39,24 @@ export default function QRPladserJakke({ navigation, route }) {
       }))
     : [];
 
-  const handeScan = (result) => {
+  const handleScan = (result) => {
     setScanned(true);
     setResult(result);
+    pladser.forEach((item) => {
+      if (matchingElement.Pladser[item.key] === result) {
+        setBrugerPlads(item.key);
+      }
+    });
   };
+
   const confirmScan = () => {
-    matchingElement.Pladser[ledigPlads] = result;
+    matchingElement.Pladser[brugerPlads] = "Ikke optaget";
     saveToFile(
       "saved.json",
       matchingElement.Navn,
       kode,
       matchingElement.Pladser
     );
-    console.log(ledigPlads, matchingElement.Pladser[ledigPlads]);
     console.log(matchingElement);
     navigation.navigate("PersonaleLogin");
   };
@@ -76,32 +82,42 @@ export default function QRPladserJakke({ navigation, route }) {
     <View style={styles.cameraContainer}>
       {scanned ? (
         <View style={styles.mainContainer}>
-          <Text style={styles.standardText}>
-            Du har placeret en jakke på plads {ledigPlads}
-          </Text>
           <Text style={styles.standardText}>Jakkens ejer er: {result}</Text>
-          <Text />
-          <Text style={styles.standardText}>Vær sikker på at:</Text>
-          <View style={{ alignContent: "left" }}>
-            <Text style={styles.standardText}>
-              - Du har givet det rigtige pladsnummer til ejeren
-            </Text>
-            <Text style={styles.standardText}>
-              - Navnet på skærmen matcher ejerens navn
-            </Text>
-          </View>
-          <Button
-            label="Bekræft"
-            OnPress={confirmScan}
-            ContainerStyle={styles.buttonContainer}
-          />
+          {brugerPlads !== 0 ? (
+            <>
+              <Text style={styles.standardText}>
+                {" "}
+                {result} har jakker på pladserne:
+              </Text>
+              <Text style={styles.standardText}> {brugerPlads}</Text>
+              <Button
+                label="Fjern jakke"
+                OnPress={confirmScan}
+                ContainerStyle={styles.buttonContainer}
+              />
+            </>
+          ) : (
+            <View>
+              <Text style={styles.standardText}>
+                {" "}
+                {result} har ingen jakker i garderoben
+              </Text>
+              <Button
+                label="Tilbage"
+                OnPress={() => {
+                  navigation.navigate("PersonaleLogin");
+                }}
+                ContainerStyle={styles.buttonContainer}
+              />
+            </View>
+          )}
         </View>
       ) : (
         <CameraView
           style={{ flex: 1 }}
           facing={facing}
           barcodeScannerSettings={{ barcodeTypes: ["qr"] }}
-          onBarcodeScanned={(result) => handeScan(result.data)}
+          onBarcodeScanned={(result) => handleScan(result.data)}
         />
       )}
     </View>

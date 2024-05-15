@@ -1,10 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, Alert } from "react-native";
 import { styles } from "../components/styles";
 import Button from "../components/Button";
-import { deleteSavedFile } from "../components/FileHandler";
+import { loadSavedData, deleteSavedFile } from "../components/FileHandler";
+import useOnScreenLoad from "../components/useOnScreenLoad";
 
 export default function MainPage({ navigation }) {
+  const [Navn, setNavn] = useState("");
+
+  const fetchNameData = async () => {
+    try {
+      const data = await loadSavedData("name.json");
+      console.log("a Data:", data);
+      console.log("Navn:", data[0].Navn);
+      setNavn(data[0].Navn || "");
+    } catch (error) {
+      setNavn("");
+      console.error("Error loading name data:", error);
+    }
+  };
+
+  const fortsætSomGæst = () => {
+    if (typeof Navn === "string" && Navn !== "") {
+      console.log("name found");
+      navigation.navigate("KundeMainPage");
+    } else {
+      console.log("no name found");
+      navigation.navigate("KundeAddNamePage");
+    }
+  };
+  useOnScreenLoad(fetchNameData);
+
   return (
     <View style={styles.mainContainer}>
       <View style={styles.titleContainer}>
@@ -20,12 +46,12 @@ export default function MainPage({ navigation }) {
             OnPress={() => navigation.navigate("PersonaleLogin")}
             ContainerStyle={styles.buttonContainer}
           />
-          <View style={{ height: "60%" }}></View>
+          <View style={{ height: "50%" }}></View>
         </View>
         <View style={{ justifyContent: "flex-end" }}>
           <Button
             label="Fortsæt som gæst"
-            OnPress={() => navigation.navigate("KundeMainPage")}
+            OnPress={fortsætSomGæst}
             ContainerStyle={styles.buttonContainer}
           />
           <View style={{ flexDirection: "row", alignSelf: "center" }}>

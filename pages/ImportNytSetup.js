@@ -33,19 +33,21 @@ export default function ImportNytSetup({ navigation }) {
     }
   };
   return (
-    <View style={styles.mainContainer}>
-      <View style={{ borderColor: "black", borderWidth: 2 }}>
+    <View style={{ ...styles.mainContainer, justifyContent: "center" }}>
+      <View style={{ alignItems: "center" }}>
         <>
           <Button
             label="Indtast Kode"
             OnPress={() => setShowInput(true)}
-            ContainerStyle={styles.textShowContainer}
+            ContainerStyle={styles.buttonContainer}
           />
         </>
         <>
           {showInput && (
             <>
+              <Text style={styles.standardText}>Indtast din fests kode</Text>
               <TextInput
+                style={styles.standardText}
                 placeholder="Indtast Kode..."
                 value={inputText}
                 onChangeText={setInputText}
@@ -53,7 +55,7 @@ export default function ImportNytSetup({ navigation }) {
               <Button
                 label="Confirm"
                 OnPress={handleConfirmLogin}
-                ContainerStyle={styles.textShowContainer}
+                ContainerStyle={styles.buttonContainer}
               />
             </>
           )}

@@ -10,9 +10,13 @@ import MainPage from "../pages/MainPage"; // MainPage er startsiden
 import PersonaleLogin from "../pages/PersonaleLogin"; // PersonaleLogin er der hvor man vælge garderobe
 import ImportNytSetup from "../pages/ImportNytSetup"; // Denne side er der hvor man laver skriver kode til ny garderobe
 import GMainPage from "../pages/GarderobeMainPage"; // Garderobens main page, når man er logget ind
-import KundeQRScan from "../pages/KundeQRScan"; // Eksistere ikke endnu.
+import KundeQRScan from "../pages/KundeQRScan";
 import QRPladserJakke from "../pages/QRPladserJakke"; // QRScanner er siden til scanning af QR-koder
+import QRFjernJakke from "../pages/QRFjernJakke";
 import KundeMainPage from "../pages/KundeMainPage";
+import JakkeTilbage from "../pages/JakkeTilbage";
+import KundeAddNamePage from "../pages/KundeAddNamePage";
+
 // Herunder er alle main funktionerne fra siderne
 const Stack = createStackNavigator();
 
@@ -28,6 +32,9 @@ export default function AppNavigator() {
         <Stack.Screen name="KundeQRScan" component={KundeQRScan} />
         <Stack.Screen name="QRPladserJakke" component={QRPladserJakke} />
         <Stack.Screen name="KundeMainPage" component={KundeMainPage} />
+        <Stack.Screen name="QRFjernJakke" component={QRFjernJakke} />
+        <Stack.Screen name="JakkeTilbage" component={JakkeTilbage} />
+        <Stack.Screen name="KundeAddNamePage" component={KundeAddNamePage} />
       </Stack.Navigator>
     </NavigationContainer>
   );
