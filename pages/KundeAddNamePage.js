@@ -58,12 +58,14 @@ export default function KundeAddNamePage({ navigation }) {
         </View>
         <>
           <>
-            <TextInput
-              style={styles.standardText}
-              placeholder="Indtast Navn..."
-              value={inputText}
-              onChangeText={setInputText}
-            />
+            <View style={styles.inputContaier}>
+              <TextInput
+                style={styles.standardText}
+                placeholder="Indtast Navn..."
+                value={inputText}
+                onChangeText={setInputText}
+              />
+            </View>
             <Button
               label="Confirm"
               OnPress={handleConfirmLogin}

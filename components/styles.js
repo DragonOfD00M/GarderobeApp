@@ -24,6 +24,9 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     color: "#000",
   },
+  inputContaier: {
+    backgroundColor: "#CCC",
+  },
   buttonContainer: {
     width: 320,
     height: 68,

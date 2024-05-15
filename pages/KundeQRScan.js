@@ -22,10 +22,10 @@ export default function KundeQRScan({ navigation, route }) {
       <View>
         <SvgQRCode value={Navn} size={300} />
       </View>
-      <View style={{ alignContents: "center" }}>
+      <View style={{ ...styles.inputContaier, alignContents: "center" }}>
         <TextInput
           style={styles.standardText}
-          placeholder="Pladsnummer"
+          placeholder="Pladsnummer... "
           value={pladsnummer}
           onChangeText={(text) => setPladsnummer(text)}
         />

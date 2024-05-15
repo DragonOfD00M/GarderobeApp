@@ -90,12 +90,14 @@ export default function GMainPage({ navigation, route }) {
           ) : (
             <>
               <Text style={styles.standardText}>Pladsnummer: Ikke valgt</Text>
-              <TextInput
-                style={styles.standardText}
-                placeholder="Indtast pladsnummer..."
-                value={tempPladsNummer}
-                onChangeText={setTempPladsNummer}
-              />
+              <View style={styles.inputContaier}>
+                <TextInput
+                  style={styles.standardText}
+                  placeholder="Indtast pladsnummer..."
+                  value={tempPladsNummer}
+                  onChangeText={setTempPladsNummer}
+                />
+              </View>
               <Button
                 label="Bekræft pladsnummer"
                 OnPress={() => {

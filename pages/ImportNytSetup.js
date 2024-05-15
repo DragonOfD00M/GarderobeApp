@@ -26,7 +26,7 @@ export default function ImportNytSetup({ navigation }) {
       dbData.forEach((item) => {
         if (item.Kode === inputText.trim()) {
           saveToFile("saved.json", item.Navn, inputText.trim(), item.Pladser);
-          navigation.navigate("GMainPage", { kode: item.Kode });
+          navigation.navigate("MainPage");
         }
       });
     } else {
@@ -46,12 +46,14 @@ export default function ImportNytSetup({ navigation }) {
           {showInput && (
             <>
               <Text style={styles.standardText}>Indtast din fests kode</Text>
-              <TextInput
-                style={styles.standardText}
-                placeholder="Indtast Kode..."
-                value={inputText}
-                onChangeText={setInputText}
-              />
+              <View style={styles.inputContaier}>
+                <TextInput
+                  style={styles.standardText}
+                  placeholder="Indtast Kode..."
+                  value={inputText}
+                  onChangeText={setInputText}
+                />
+              </View>
               <Button
                 label="Confirm"
                 OnPress={handleConfirmLogin}
