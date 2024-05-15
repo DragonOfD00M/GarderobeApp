@@ -92,9 +92,7 @@ export default function JakkeTilbage({ navigation, route }) {
         <>
           <Button
             label="Brug QR kode"
-            OnPress={() =>
-              navigation.navigate("QRPladserJakke", { kode: kode })
-            }
+            OnPress={() => navigation.navigate("QRFjernJakke", { kode: kode })}
             ContainerStyle={styles.buttonContainer}
           />
           <View style={{ height: "10%" }} />
