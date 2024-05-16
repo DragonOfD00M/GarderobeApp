@@ -16,7 +16,6 @@ class Mode_box:
             case "P":
                 self.text = "Placer"
 
-    
     def draw(self, surface: pygame.Surface, mode: str) -> None:
         if self.is_chosen(mode):
             pygame.draw.rect(surface,self.colour_chosen,self.rect)
@@ -29,9 +28,6 @@ class Mode_box:
         pygame.draw.line(surface,(0,0,0),(self.center[0]-150,self.center[1]+75),(self.center[0]-140,self.center[1]+65),3)
         pygame.draw.line(surface,(0,0,0),(self.center[0]+150,self.center[1]+75),(self.center[0]+140,self.center[1]+65),3)
 
-        
-        
-        
         box_text = self.font.render(self.text,True,((0,0,0)))
         box_text_rect = box_text.get_rect()
         box_text_rect.center=(self.center)
@@ -81,7 +77,6 @@ class Screen:
         self.font = pygame.font.Font(None, 75)
         self.rect = pygame.Rect(center[0]-500,center[1]-100,1000,200)
 
-
     def draw(self, surface: pygame.Surface) -> None:
         pygame.draw.rect(surface,(200,200,200),self.rect)
         pygame.draw.rect(surface,(0,0,0),self.rect,5)
@@ -112,9 +107,3 @@ class Hanger:
             self.status = False
         else:
             self.status = True
-
-
-
-
-     
-
